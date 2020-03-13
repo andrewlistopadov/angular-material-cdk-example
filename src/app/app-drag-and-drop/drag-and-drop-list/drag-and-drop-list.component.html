@@ -1,0 +1,16 @@
+<div class="card-list">
+  <div class="group group-a">
+    <app-drag-and-drop-card
+      class="card"
+      *ngFor="let card of groupACards; trackBy: trackById"
+      [card]="card"
+    ></app-drag-and-drop-card>
+  </div>
+  <div class="group group-b">
+    <app-drag-and-drop-card
+      class="card"
+      *ngFor="let card of groupBCards; trackBy: trackById"
+      [card]="card"
+    ></app-drag-and-drop-card>
+  </div>
+</div>

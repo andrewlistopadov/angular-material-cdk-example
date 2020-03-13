@@ -1,0 +1,19 @@
+.card-list {
+  display: flex;
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  padding: 10px;
+  border: solid 2px #cccccc;
+
+  & + & {
+    margin-left: 20px;
+  }
+}
+
+.card {
+  margin: 10px;
+}

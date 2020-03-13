@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppDragAndDropComponent } from './app-drag-and-drop.component';
+import { DragAndDropListModule } from './drag-and-drop-list/drag-and-drop-list.module';
 
 @NgModule({
   declarations: [AppDragAndDropComponent],
   imports: [
     CommonModule,
-    DragDropModule,
-    RouterModule.forChild([{ path: '', component: AppDragAndDropComponent }])
+    RouterModule.forChild([{ path: '', component: AppDragAndDropComponent }]),
+    DragAndDropListModule
   ]
 })
 export class AppDragAndDropModule {}
