@@ -3,6 +3,7 @@
   <div
     class="group group-a"
     cdkDropList
+    cdkDropListSortingDisabled
     #groupACardList="cdkDropList"
     [cdkDropListData]="groupACards"
     [cdkDropListConnectedTo]="[groupBCardList]"
@@ -20,6 +21,7 @@
   <div
     class="group group-b"
     cdkDropList
+    cdkDropListOrientation="horizontal"
     #groupBCardList="cdkDropList"
     [cdkDropListData]="groupBCards"
     [cdkDropListConnectedTo]="[groupACardList]"
@@ -27,7 +29,6 @@
   >
     <app-drag-and-drop-card
       class="card"
-      cdkDrag
       *ngFor="let card of groupBCards; trackBy: trackById"
       [card]="card"
     ></app-drag-and-drop-card>
