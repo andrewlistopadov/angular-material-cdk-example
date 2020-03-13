@@ -8,14 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: move;
   user-select: none;
+  border-radius: 4px;
 
   &:hover {
     border-color: #006666;
-  }
-  &:active {
-    background-color: #66cccc;
-    cursor: grabbing;
   }
 }
