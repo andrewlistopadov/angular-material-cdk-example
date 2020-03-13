@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
 
+## Dev info
+
+https://github.com/angular-schule/angular-cli-ghpages
+Deploy `ng deploy --base-href=/angular-material-cdk-example/`
+Check this out https://andrewlistopadov.github.io/angular-material-cdk-example/
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
