@@ -1,8 +1,11 @@
-<div class="card-list" cdkDropListGroup>
+<div class="card-list">
+  <!-- <pre>{{ groupACards | json }}</pre> -->
   <div
     class="group group-a"
     cdkDropList
+    #groupACardList="cdkDropList"
     [cdkDropListData]="groupACards"
+    [cdkDropListConnectedTo]="[groupBCardList]"
     (cdkDropListDropped)="drop($event)"
   >
     <app-drag-and-drop-card
@@ -12,10 +15,14 @@
       [card]="card"
     ></app-drag-and-drop-card>
   </div>
+
+  <!-- <pre>{{ groupACards | json }}</pre> -->
   <div
     class="group group-b"
     cdkDropList
+    #groupBCardList="cdkDropList"
     [cdkDropListData]="groupBCards"
+    [cdkDropListConnectedTo]="[groupACardList]"
     (cdkDropListDropped)="drop($event)"
   >
     <app-drag-and-drop-card
