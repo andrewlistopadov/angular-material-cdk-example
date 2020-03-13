@@ -8,11 +8,46 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: move;
   user-select: none;
   border-radius: 4px;
+  position: relative;
+
+  &--draggable {
+    cursor: move;
+  }
+
+  &--revocable {
+    &:hover > .revoke-btn {
+      display: block;
+    }
+  }
 
   &:hover {
     border-color: #006666;
+  }
+}
+
+.revoke-btn {
+  display: none;
+  position: absolute;
+  padding: 0;
+  color: #fff;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    svg {
+      transform: scale(1.1);
+    }
+  }
+
+  svg {
+    outline: none;
+    transition: transform 0.15s linear;
   }
 }

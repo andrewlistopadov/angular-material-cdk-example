@@ -2,7 +2,9 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { Card } from '../drag-and-drop-list.service';
 
@@ -12,9 +14,16 @@ import { Card } from '../drag-and-drop-list.service';
   styleUrls: ['./drag-and-drop-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DragAndDropCardComponent implements OnInit {
+export class DragAndDropCardComponent {
   @Input() card: Card = null;
+  @Input() draggable = true;
+  @Input() revocable = false;
+  @Output() cardRevoked = new EventEmitter<Card>();
+
   constructor() {}
 
-  ngOnInit(): void {}
+  onRevoke(event: MouseEvent): void {
+    event.stopPropagation;
+    this.cardRevoked.emit(this.card);
+  }
 }

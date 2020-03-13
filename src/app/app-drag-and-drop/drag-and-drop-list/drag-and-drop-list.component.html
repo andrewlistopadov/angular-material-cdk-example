@@ -31,6 +31,9 @@
       class="card"
       *ngFor="let card of groupBCards; trackBy: trackById"
       [card]="card"
+      [draggable]="false"
+      [revocable]="true"
+      (cardRevoked)="onCardRevoke($event)"
     ></app-drag-and-drop-card>
   </div>
 </div>

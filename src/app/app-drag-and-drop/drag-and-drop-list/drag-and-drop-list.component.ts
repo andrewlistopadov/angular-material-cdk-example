@@ -22,7 +22,7 @@ export class DragAndDropListComponent implements OnInit {
     this.groupBCards = [];
   }
 
-  drop(event: CdkDragDrop<Card[]>) {
+  drop(event: CdkDragDrop<Card[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -37,6 +37,11 @@ export class DragAndDropListComponent implements OnInit {
         event.currentIndex
       );
     }
+  }
+
+  onCardRevoke(card: Card): void {
+    this.groupACards.push(card);
+    this.groupBCards = this.groupBCards.filter(c => c.id !== card.id);
   }
 
   trackById(index: number, card: Card): number {
