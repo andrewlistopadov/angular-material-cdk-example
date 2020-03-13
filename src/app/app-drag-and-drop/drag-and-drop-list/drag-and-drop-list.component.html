@@ -1,14 +1,26 @@
-<div class="card-list">
-  <div class="group group-a">
+<div class="card-list" cdkDropListGroup>
+  <div
+    class="group group-a"
+    cdkDropList
+    [cdkDropListData]="groupACards"
+    (cdkDropListDropped)="drop($event)"
+  >
     <app-drag-and-drop-card
       class="card"
+      cdkDrag
       *ngFor="let card of groupACards; trackBy: trackById"
       [card]="card"
     ></app-drag-and-drop-card>
   </div>
-  <div class="group group-b">
+  <div
+    class="group group-b"
+    cdkDropList
+    [cdkDropListData]="groupBCards"
+    (cdkDropListDropped)="drop($event)"
+  >
     <app-drag-and-drop-card
       class="card"
+      cdkDrag
       *ngFor="let card of groupBCards; trackBy: trackById"
       [card]="card"
     ></app-drag-and-drop-card>

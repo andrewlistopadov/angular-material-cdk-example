@@ -3,8 +3,6 @@
 }
 
 .group {
-  display: flex;
-  flex-wrap: wrap;
   flex: 1;
   padding: 10px;
   border: solid 2px #cccccc;
@@ -15,5 +13,6 @@
 }
 
 .card {
+  display: inline-block;
   margin: 10px;
 }

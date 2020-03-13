@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DragAndDropListService, Card } from './drag-and-drop-list.service';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-drag-and-drop-list',
@@ -17,7 +22,24 @@ export class DragAndDropListComponent implements OnInit {
     this.groupBCards = [];
   }
 
-  public trackById(index: number, card: Card): number {
+  drop(event: CdkDragDrop<Card[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
+
+  trackById(index: number, card: Card): number {
     return card.id;
   }
 }
