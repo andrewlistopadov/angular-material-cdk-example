@@ -2,18 +2,31 @@
   display: flex;
 }
 
+.single-line {
+  height: 225px;
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.group-wrapper + .group-wrapper {
+  margin-left: 10px;
+}
+
 .group {
   flex: 1;
   padding: 5px;
   border: solid 2px #cccccc;
-
-  & + & {
-    margin-left: 10px;
-  }
 }
 
-.group-b {
-  max-width: 200px;
+.drag-section {
+  min-width: 175px;
+  max-width: 500px;
+}
+
+.drop-section {
+  flex: 1;
+  min-width: 500px;
 }
 
 .card {
@@ -22,7 +35,6 @@
 }
 
 .cdk-drag-preview {
-  border-radius: 4px;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
     0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }

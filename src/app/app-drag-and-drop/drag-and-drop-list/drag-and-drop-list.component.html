@@ -1,39 +1,45 @@
 <div class="card-list">
   <!-- <pre>{{ groupACards | json }}</pre> -->
-  <div
-    class="group group-a"
-    cdkDropList
-    cdkDropListSortingDisabled
-    #groupACardList="cdkDropList"
-    [cdkDropListData]="groupACards"
-    [cdkDropListConnectedTo]="[groupBCardList]"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <app-drag-and-drop-card
-      class="card"
-      cdkDrag
-      *ngFor="let card of groupACards; trackBy: trackById"
-      [card]="card"
-    ></app-drag-and-drop-card>
+  <div class="group-wrapper drag-section">
+    <div
+      class="group group-a"
+      cdkDropList
+      cdkDropListSortingDisabled
+      #groupACardList="cdkDropList"
+      [cdkDropListData]="groupACards"
+      [cdkDropListConnectedTo]="[groupBCardList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-drag-and-drop-card
+        class="card"
+        cdkDrag
+        *ngFor="let card of groupACards; trackBy: trackById"
+        [card]="card"
+      ></app-drag-and-drop-card>
+    </div>
   </div>
 
   <!-- <pre>{{ groupACards | json }}</pre> -->
-  <div
-    class="group group-b"
-    cdkDropList
-    cdkDropListOrientation="horizontal"
-    #groupBCardList="cdkDropList"
-    [cdkDropListData]="groupBCards"
-    [cdkDropListConnectedTo]="[groupACardList]"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <app-drag-and-drop-card
-      class="card"
-      *ngFor="let card of groupBCards; trackBy: trackById"
-      [card]="card"
-      [draggable]="false"
-      [revocable]="true"
-      (cardRevoked)="onCardRevoke($event)"
-    ></app-drag-and-drop-card>
+  <div class="group-wrapper drop-section">
+    <div
+      class="group group-b single-line"
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      #groupBCardList="cdkDropList"
+      [cdkDropListData]="groupBCards"
+      [cdkDropListConnectedTo]="[groupACardList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-drag-and-drop-card
+        class="card"
+        *ngFor="let card of groupBCards; trackBy: trackById"
+        [card]="card"
+        [draggable]="false"
+        [revocable]="true"
+        (cardRevoked)="onCardRevoke($event)"
+      ></app-drag-and-drop-card>
+    </div>
+    <div class="group group-c single-line"></div>
+    <div class="group group-d single-line"></div>
   </div>
 </div>
