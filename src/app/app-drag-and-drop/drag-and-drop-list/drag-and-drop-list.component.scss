@@ -5,6 +5,7 @@
 .single-line {
   &--collapsed {
     height: 75px;
+
     &.cdk-drop-list-dragging > .cdk-drag-placeholder {
       visibility: hidden;
     }
@@ -27,7 +28,6 @@
 }
 
 .group {
-  flex: 1;
   padding: 5px;
   border: solid 2px #cccccc;
 }
