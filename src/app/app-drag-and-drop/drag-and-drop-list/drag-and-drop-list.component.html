@@ -2,7 +2,7 @@
   <!-- <pre>{{ groupACards | json }}</pre> -->
   <div class="group-wrapper primary-section">
     <div
-      id="{{ primaryCardGroup.id }}"
+      [id]="primaryCardGroup.id"
       class="group multi-line"
       cdkDropList
       cdkDropListSortingDisabled
@@ -23,7 +23,7 @@
   <div class="group-wrapper secondary-section">
     <div
       *ngFor="let group of secondaryCardGroups"
-      id="{{ group.id }}"
+      [id]="group.id"
       class="group single-line"
       [ngClass]="
         isCardGroupNotEmpty(group)
