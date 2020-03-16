@@ -3,14 +3,19 @@
 }
 
 .single-line {
-  height: 225px;
+  min-height: 100px;
+  max-height: 240px; /* due to scroll on overflowing */
   & + & {
     margin-top: 20px;
   }
 }
 
+.multi-line {
+  min-height: 224px;
+}
+
 .group-wrapper + .group-wrapper {
-  margin-left: 10px;
+  margin-left: 40px;
 }
 
 .group {
@@ -27,6 +32,11 @@
 .drop-section {
   flex: 1;
   min-width: 500px;
+
+  & > .group {
+    display: flex;
+    overflow: auto;
+  }
 }
 
 .card {
@@ -35,6 +45,13 @@
 }
 
 .cdk-drag-preview {
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+/*.cdk-drop-list-receiving {
+  border-color: red;
+}*/
+
+.drop-section > .cdk-drop-list-dragging {
+  border-color: rgba(4, 96, 169, 0.5);
 }
