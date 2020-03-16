@@ -58,6 +58,10 @@ export class DragAndDropListComponent implements OnInit {
     return this.droppableCardGroups.map(g => g.id);
   }
 
+  isCardGroupNotEmpty(group: CardGroup): boolean {
+    return Boolean(group.cards.length);
+  }
+
   trackById(index: number, card: Card): number {
     return card.id;
   }

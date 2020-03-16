@@ -26,6 +26,11 @@
       *ngFor="let group of droppableCardGroups"
       id="{{ group.id }}"
       class="group single-line"
+      [ngClass]="
+        isCardGroupNotEmpty(group)
+          ? 'single-line--expanded'
+          : 'single-line--collapsed'
+      "
       cdkDropList
       cdkDropListOrientation="horizontal"
       [cdkDropListData]="group.cards"

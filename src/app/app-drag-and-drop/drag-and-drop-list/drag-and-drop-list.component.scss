@@ -3,8 +3,16 @@
 }
 
 .single-line {
-  min-height: 100px;
-  max-height: 240px; /* due to scroll on overflowing */
+  &--collapsed {
+    height: 75px;
+    &.cdk-drop-list-dragging > .cdk-drag-placeholder {
+      visibility: hidden;
+    }
+  }
+
+  &--expanded {
+    height: 240px; /* due to scroll on overflowing */
+  }
   & + & {
     margin-top: 20px;
   }
@@ -36,6 +44,7 @@
   & > .group {
     display: flex;
     overflow: auto;
+    align-items: flex-start;
   }
 }
 
@@ -48,10 +57,24 @@
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
-/*.cdk-drop-list-receiving {
-  border-color: red;
-}*/
+.drop-section > .cdk-drop-list-receiving {
+  animation: border-pulsate 1.5s infinite;
+}
 
 .drop-section > .cdk-drop-list-dragging {
   border-color: #669999;
+  overflow: hidden;
+  background-color: #e0ebeb;
+}
+
+@keyframes border-pulsate {
+  0% {
+    border-color: rgba(204, 204, 204, 1);
+  }
+  50% {
+    border-color: rgba(143, 143, 143, 1);
+  }
+  100% {
+    border-color: rgba(204, 204, 204, 1);
+  }
 }
