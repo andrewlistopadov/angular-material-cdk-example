@@ -2,18 +2,19 @@
   <!-- <pre>{{ groupACards | json }}</pre> -->
   <div class="group-wrapper drag-section">
     <div
-      class="group group-a multi-line"
+      id="{{ draggableCardGroup.id }}"
+      class="group multi-line"
       cdkDropList
       cdkDropListSortingDisabled
-      #groupACardList="cdkDropList"
-      [cdkDropListData]="groupACards"
-      [cdkDropListConnectedTo]="[groupBCardList]"
+      #draggableCardList="cdkDropList"
+      [cdkDropListData]="draggableCardGroup.cards"
+      [cdkDropListConnectedTo]="droppableCardGroupIds"
       (cdkDropListDropped)="drop($event)"
     >
       <app-drag-and-drop-card
         class="card"
         cdkDrag
-        *ngFor="let card of groupACards; trackBy: trackById"
+        *ngFor="let card of draggableCardGroup.cards; trackBy: trackById"
         [card]="card"
       ></app-drag-and-drop-card>
     </div>
@@ -22,24 +23,23 @@
   <!-- <pre>{{ groupACards | json }}</pre> -->
   <div class="group-wrapper drop-section">
     <div
-      class="group group-b single-line"
+      *ngFor="let group of droppableCardGroups"
+      id="{{ group.id }}"
+      class="group single-line"
       cdkDropList
       cdkDropListOrientation="horizontal"
-      #groupBCardList="cdkDropList"
-      [cdkDropListData]="groupBCards"
-      [cdkDropListConnectedTo]="[groupACardList]"
+      [cdkDropListData]="group.cards"
+      [cdkDropListConnectedTo]="[draggableCardList]"
       (cdkDropListDropped)="drop($event)"
     >
       <app-drag-and-drop-card
         class="card"
-        *ngFor="let card of groupBCards; trackBy: trackById"
+        *ngFor="let card of group.cards; trackBy: trackById"
         [card]="card"
         [draggable]="false"
         [revocable]="true"
-        (cardRevoked)="onCardRevoke($event)"
+        (cardRevoked)="onCardRevoke($event, group.id)"
       ></app-drag-and-drop-card>
     </div>
-    <div class="group group-c single-line"></div>
-    <div class="group group-d single-line"></div>
   </div>
 </div>

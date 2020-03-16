@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DragAndDropListService, Card } from './drag-and-drop-list.service';
+import {
+  DragAndDropListService,
+  Card,
+  CardGroup
+} from './drag-and-drop-list.service';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -12,14 +16,19 @@ import {
   styleUrls: ['./drag-and-drop-list.component.scss']
 })
 export class DragAndDropListComponent implements OnInit {
-  public groupACards: Card[] = null;
-  public groupBCards: Card[] = null;
+  public draggableCardGroup: CardGroup = null;
+  public droppableCardGroups: CardGroup[] = null;
 
   constructor(private dragAndDropListService: DragAndDropListService) {}
 
   ngOnInit(): void {
-    this.groupACards = this.dragAndDropListService.generateCards(5);
-    this.groupBCards = [];
+    this.draggableCardGroup = this.dragAndDropListService.createCardGroup(5);
+    this.droppableCardGroups = [];
+    for (let i = 0; i < 4; i++) {
+      this.droppableCardGroups.push(
+        this.dragAndDropListService.createCardGroup()
+      );
+    }
   }
 
   drop(event: CdkDragDrop<Card[]>): void {
@@ -39,9 +48,14 @@ export class DragAndDropListComponent implements OnInit {
     }
   }
 
-  onCardRevoke(card: Card): void {
-    this.groupACards.push(card);
-    this.groupBCards = this.groupBCards.filter(c => c.id !== card.id);
+  onCardRevoke(card: Card, cardGroupdId: string): void {
+    this.draggableCardGroup.cards.push(card);
+    const cardGroup = this.droppableCardGroups.find(g => g.id === cardGroupdId);
+    cardGroup.cards = cardGroup.cards.filter(c => c.id !== card.id);
+  }
+
+  get droppableCardGroupIds(): string[] {
+    return this.droppableCardGroups.map(g => g.id);
   }
 
   trackById(index: number, card: Card): number {
