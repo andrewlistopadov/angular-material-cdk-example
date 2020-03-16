@@ -16,16 +16,16 @@ import {
   styleUrls: ['./drag-and-drop-list.component.scss']
 })
 export class DragAndDropListComponent implements OnInit {
-  public draggableCardGroup: CardGroup = null;
-  public droppableCardGroups: CardGroup[] = null;
+  public primaryCardGroup: CardGroup = null;
+  public secondaryCardGroups: CardGroup[] = null;
 
   constructor(private dragAndDropListService: DragAndDropListService) {}
 
   ngOnInit(): void {
-    this.draggableCardGroup = this.dragAndDropListService.createCardGroup(5);
-    this.droppableCardGroups = [];
+    this.primaryCardGroup = this.dragAndDropListService.createCardGroup(5);
+    this.secondaryCardGroups = [];
     for (let i = 0; i < 4; i++) {
-      this.droppableCardGroups.push(
+      this.secondaryCardGroups.push(
         this.dragAndDropListService.createCardGroup()
       );
     }
@@ -49,13 +49,16 @@ export class DragAndDropListComponent implements OnInit {
   }
 
   onCardRevoke(card: Card, cardGroupdId: string): void {
-    this.draggableCardGroup.cards.push(card);
-    const cardGroup = this.droppableCardGroups.find(g => g.id === cardGroupdId);
+    this.primaryCardGroup.cards.push(card);
+    const cardGroup = this.secondaryCardGroups.find(g => g.id === cardGroupdId);
     cardGroup.cards = cardGroup.cards.filter(c => c.id !== card.id);
   }
 
-  get droppableCardGroupIds(): string[] {
-    return this.droppableCardGroups.map(g => g.id);
+  get connectedCardGroupIds(): string[] {
+    return [
+      ...this.secondaryCardGroups.map(g => g.id),
+      this.primaryCardGroup.id
+    ];
   }
 
   isCardGroupNotEmpty(group: CardGroup): boolean {

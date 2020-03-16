@@ -1,29 +1,28 @@
 <div class="card-list">
   <!-- <pre>{{ groupACards | json }}</pre> -->
-  <div class="group-wrapper drag-section">
+  <div class="group-wrapper primary-section">
     <div
-      id="{{ draggableCardGroup.id }}"
+      id="{{ primaryCardGroup.id }}"
       class="group multi-line"
       cdkDropList
       cdkDropListSortingDisabled
-      #draggableCardList="cdkDropList"
-      [cdkDropListData]="draggableCardGroup.cards"
-      [cdkDropListConnectedTo]="droppableCardGroupIds"
+      [cdkDropListData]="primaryCardGroup.cards"
+      [cdkDropListConnectedTo]="connectedCardGroupIds"
       (cdkDropListDropped)="drop($event)"
     >
       <app-drag-and-drop-card
         class="card"
         cdkDrag
-        *ngFor="let card of draggableCardGroup.cards; trackBy: trackById"
+        *ngFor="let card of primaryCardGroup.cards; trackBy: trackById"
         [card]="card"
       ></app-drag-and-drop-card>
     </div>
   </div>
 
   <!-- <pre>{{ groupACards | json }}</pre> -->
-  <div class="group-wrapper drop-section">
+  <div class="group-wrapper secondary-section">
     <div
-      *ngFor="let group of droppableCardGroups"
+      *ngFor="let group of secondaryCardGroups"
       id="{{ group.id }}"
       class="group single-line"
       [ngClass]="
@@ -34,14 +33,14 @@
       cdkDropList
       cdkDropListOrientation="horizontal"
       [cdkDropListData]="group.cards"
-      [cdkDropListConnectedTo]="[draggableCardList]"
+      [cdkDropListConnectedTo]="connectedCardGroupIds"
       (cdkDropListDropped)="drop($event)"
     >
       <app-drag-and-drop-card
         class="card"
+        cdkDrag
         *ngFor="let card of group.cards; trackBy: trackById"
         [card]="card"
-        [draggable]="false"
         [revocable]="true"
         (cardRevoked)="onCardRevoke($event, group.id)"
       ></app-drag-and-drop-card>
